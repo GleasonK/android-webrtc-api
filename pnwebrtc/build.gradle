@@ -8,8 +8,8 @@ android {
         applicationId "me.kevingleason.pnwebrtc"
         minSdkVersion 15
         targetSdkVersion 21
-        versionCode 1
-        versionName "1.0"
+        versionName project.VERSION_NAME
+        versionCode Integer.parseInt(project.VERSION_CODE)
     }
     buildTypes {
         release {
@@ -24,3 +24,5 @@ dependencies {
     compile 'io.pristine:libjingle:9127@aar'
     compile 'com.pubnub:pubnub-android:3.7.4'
 }
+
+apply from: '../maven_push.gradle'
