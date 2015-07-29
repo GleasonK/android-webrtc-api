@@ -29,6 +29,12 @@ public abstract class PnRTCListener{
      */
     public void onPeerStatusChanged(PnPeer peer){}
 
+    /**TODO: Is this different than onPeerStatusChanged == DISCONNECTED?
+     * Called when a hangup occurs.
+     * @param peer The peer who was hung up on, or who hung up on you
+     */
+    public void onPeerConnectionClosed(PnPeer peer){}
+
     /**
      * Called in {@link PnPeerConnectionClient} when setLocalStream
      * is invoked.

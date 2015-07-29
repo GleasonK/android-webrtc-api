@@ -85,4 +85,31 @@ public class PnRTCClient {
         return areaCode + "-" + digits;
     }
 
+// Use these in PnRTCPhone wrapper object.
+//    /**
+//     * Call this method in Activity.onPause()
+//     */
+//    public void onPause() {
+//        if(videoSource != null) videoSource.stop();
+//    }
+//
+//    /**
+//     * Call this method in Activity.onResume()
+//     */
+//    public void onResume() {
+//        if(videoSource != null) videoSource.restart();
+//    }
+
+    /**
+     * Call this method in Activity.onDestroy()
+     */
+    public void onDestroy() {
+        this.pcClient.closeAllConnections();
+//        pcClient.pcFactory.dispose();
+        this.mPubNub.unsubscribeAll();
+//        if (this.pcClient.getLocalMediaStream() != null){
+//            this.pcClient.getLocalMediaStream().dispose();
+//        }
+    }
+
 }
