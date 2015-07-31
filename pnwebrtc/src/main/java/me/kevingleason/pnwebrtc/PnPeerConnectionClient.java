@@ -36,6 +36,7 @@ public class PnPeerConnectionClient {
     PeerConnectionFactory pcFactory;
     PnRTCListener mRtcListener;
     PnSignalingParams signalingParams;
+    int MAX_CONNECTIONS = Integer.MAX_VALUE;
 
     private Pubnub mPubNub;
     private PnRTCReceiver mSubscribeReceiver;
@@ -63,7 +64,7 @@ public class PnPeerConnectionClient {
         mSubscribeReceiver = new PnRTCReceiver();
     }
 
-    boolean connect(String myId){  // Todo: return success?
+    boolean listenOn(String myId){  // Todo: return success?
         if (localMediaStream==null){       // Not true for streaming?
             mRtcListener.onDebug(new PnRTCMessage("Need to add media stream before you can connect."));
             return false;
@@ -75,6 +76,30 @@ public class PnPeerConnectionClient {
         this.id = myId;
         subscribe(myId);
         return true;
+    }
+
+    /**TODO: Add a max user threshold.
+     * Connect with another user by their ID.
+     * @param userId The user to establish a WebRTC connection with
+     * @return boolean value of success
+     */
+    boolean connect(String userId) {
+        if (!peers.containsKey(userId)) { // Prevents duplicate dials.
+            if (peers.size() < MAX_CONNECTIONS) {
+                PnPeer peer = addPeer(userId);
+                peer.pc.addStream(this.localMediaStream);
+                try {
+                    actionMap.get(CreateOfferAction.TRIGGER).execute(userId, new JSONObject());
+                } catch (JSONException e){
+                    e.printStackTrace();
+                    return false;
+                }
+                return true;
+            }
+        }
+        this.mRtcListener.onDebug(new PnRTCMessage("CONNECT FAILED. Duplicate dial or max peer " +
+                "connections exceeded. Max: " + MAX_CONNECTIONS + " Current: " + this.peers.size()));
+        return false;
     }
 
     public void setRTCListener(PnRTCListener listener){
@@ -126,7 +151,7 @@ public class PnPeerConnectionClient {
             peer.hangup();
             packet.put(PnRTCMessage.JSON_HANGUP, true);
             transmitMessage(id, packet);
-            mRtcListener.onPeerConnectionClosed(this.peers.get(id));
+            mRtcListener.onPeerConnectionClosed(peer);
         } catch (JSONException e){
             e.printStackTrace();
         }
@@ -250,6 +275,25 @@ public class PnPeerConnectionClient {
             PnPeer peer = peers.get(peerId);
             mRtcListener.onMessage(peer, payload);
         }
+    }
+
+
+    /**
+     * @param userId Your id.
+     * @return
+     */
+    public static JSONObject generateHangupPacket(String userId){
+        JSONObject json = new JSONObject();
+        try {
+            JSONObject packet = new JSONObject();
+            packet.put(PnRTCMessage.JSON_HANGUP, true);
+            json.put(PnRTCMessage.JSON_PACKET, packet);
+            json.put(PnRTCMessage.JSON_ID, ""); //Todo: session id, unused in js SDK?
+            json.put(PnRTCMessage.JSON_NUMBER, userId);
+        } catch (JSONException e){
+            e.printStackTrace();
+        }
+        return json;
     }
 
     private class PnRTCReceiver extends Callback {

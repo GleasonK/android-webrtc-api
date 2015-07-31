@@ -73,8 +73,24 @@ public class PnRTCClient {
         this.pcClient.setRTCListener(listener);
     }
 
+    public void setMaxConnections(int max){
+        this.pcClient.MAX_CONNECTIONS = max;
+    }
+
+    /**
+     * Subscribe to a channel using PubNub to listen for calls.
+     * @param channel The channel to listen on, your "phone number"
+     */
     public void listenOn(String channel){
-        this.pcClient.connect(channel);
+        this.pcClient.listenOn(channel);
+    }
+
+    /**
+     * Connect with another user by their ID.
+     * @param userId The user to establish a WebRTC connection with
+     */
+    public void connect(String userId){
+        this.pcClient.connect(userId);
     }
 
     private static String generateRandomNumber(){
