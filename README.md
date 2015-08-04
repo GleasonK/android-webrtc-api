@@ -71,20 +71,20 @@ These globals effect the `PnPeerConnectionClient` as well, so set them before in
 __PnWebRTCClient__ contains everything you will need to develop video chat applications. This class has all the functions for signaling with WebRTC protocols, including [SDP Offer Options][OfferOptions] known as `MediaConstraints`. You are allowed to define custom `MediaConstraints` for the Client, and default values are used if you do not. The default values look as follows:
 
 | PeerConnection Constraint | Value |
-|-----------------------------------|
+|---------------------------|-------|
 | DtlsSrtpKeyAgreement      | true  |
 | OfferToReceiveAudio       | false | 
 | OfferToReceiveVideo       | true  |
 
 | Video Constraint     | Value |
-|------------------------------|
+|----------------------|-------|
 | maxWidth             | 1280  |
 | maxHeight            | 720   |
 | minWidth             | 640   |
 | minHeight            | 480   |
 
 | Audio Constraint     | Value |
-|------------------------------|
+|----------------------|-------|
 | None                 |       |
 
 __Optional:__ To create your own constraints, use `PnRTCClient.setSignalParams(PnSignalingParams params)`
@@ -107,7 +107,7 @@ _Note: All arguments to PnSignalingParams may be null. A null value will simply 
 __PnRTCListener__ is an abstract class that should be extended to implement all desired WebRTC callbacks. This is what connects and powers your application. The callbacks that are defined in the PubNub Signaling API are:
 
 | Listener Callback   | Description |
-|------------------------------|
+|---------------------|--------|
 | onCallReady(String callId) | Called when you are ready to receive a WebRTC connection. |
 | onConnected(String userId) | Called when you have successfully subscribed to a PubNub channel and are ready to receive a WebRTC connection. |
 | onPeerStatusChanged(PnPeer peer) | Called whenever a PnPeer's connection status is changed. Can be `CONNECTING`, `CONNECTED`, or `DISCONNECTED`. |
