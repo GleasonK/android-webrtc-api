@@ -24,7 +24,7 @@ public abstract class PnRTCListener{
 
     /**
      * Peer status changed. {@link PnPeer} status changed, can be
-     * INITIALIZING, CONNECTING, CONNECTED, or DISCONNECTED.
+     * CONNECTING, CONNECTED, or DISCONNECTED.
      * @param peer The peer object, can use to check peer.getStatus()
      */
     public void onPeerStatusChanged(PnPeer peer){}

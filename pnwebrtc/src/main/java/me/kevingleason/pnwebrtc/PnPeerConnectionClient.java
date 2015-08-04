@@ -23,11 +23,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * <p>
- *     Created by GleasonK on 7/20/15 for PubNub WebRTC Signaling.
- *     PubNub '15
- *     Boston College '16
- * </p>
+ * <p>Created by GleasonK on 7/20/15 for PubNub WebRTC Signaling.</p>
+ * <p>PubNub '15</p>
+ * <p>Boston College '16</p>
+ *
  * {@link PnPeerConnectionClient} is used to manage peer connections.
  */
 public class PnPeerConnectionClient {
