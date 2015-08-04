@@ -227,7 +227,8 @@ To start both these functionalities back up, also override `onResume` to resume 
 
 Finally, you should override `onDestroy` to properly prepare all objects for garbage collection.
 
-    @Override
+```java
+   @Override
     protected void onDestroy() {
         super.onDestroy();
         if (this.localVideoSource != null) {
@@ -237,6 +238,7 @@ Finally, you should override `onDestroy` to properly prepare all objects for gar
             this.pnRTCClient.onDestroy();
         }
     }
+```
     
 We stop our local video source so that it will not continue streaming after we have left the video activity. We then call `PnRTCClient#onDestroy()` which cleans up the client and closes all open connections.
 
