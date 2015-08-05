@@ -12,7 +12,14 @@ import java.util.List;
 
 
 /**
- * <p>Created by GleasonK on 7/20/15.</p>
+ * <h1>Main WebRTC Signaling class, holds all functions to set up {@link org.webrtc.PeerConnection}</h1>
+ * <pre>
+ * Author:  Kevin Gleason - Boston College '16
+ * File:    PnRTCClient.java
+ * Date:    7/20/15
+ * Use:     PubNub WebRTC Signaling
+ * &copy; 2009 - 2015 PubNub, Inc.
+ * </pre>
  */
 public class PnRTCClient {
     private PnSignalingParams pnSignalingParams;
@@ -112,7 +119,7 @@ public class PnRTCClient {
 
     /**
      * Attach custom listener for callbacks!
-     * @param listener
+     * @param listener The listener which extends PnRTCListener to implement callbacks
      */
     public void attachRTCListener(PnRTCListener listener){
         this.pcClient.setRTCListener(listener);
@@ -158,7 +165,7 @@ public class PnRTCClient {
     }
 
     /**
-     * Send a custom {@link org.json.JSONObject} user message to a single peer.
+     * Send a custom JSONObject user message to a single peer.
      * @param userId user to send a message to
      * @param message the JSON message to pass to a peer.
      */
@@ -173,7 +180,7 @@ public class PnRTCClient {
     }
 
     /**
-     * Send a custom {@link org.json.JSONObject} user message to all peers.
+     * Send a custom JSONObject user message to all peers.
      * @param message the JSON message to pass to all peers.
      */
     public void transmitAll(JSONObject message){
