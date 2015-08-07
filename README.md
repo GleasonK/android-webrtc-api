@@ -3,7 +3,7 @@
 [![Android
 Arsenal](https://img.shields.io/badge/Android%20Arsenal-pubnub--android--webrtc-green.svg?style=flat)](https://android-arsenal.com/details/1/2245)
 
-![cover_img](img src="http://kevingleason.me/pubnub-android-webrtc/assets/PnWebRTC.png")
+![cover_img](http://kevingleason.me/pubnub-android-webrtc/assets/PnWebRTC.png)
 
 PnWebRTC is an Android module that makes WebRTC signaling easy!
 
