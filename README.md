@@ -1,10 +1,12 @@
 # PubNub Android WebRTC Signaling API
 
-An Android module that makes WebRTC signaling easy!
+PnWebRTC is an Android module that makes WebRTC signaling easy!
+
+__[View the official PnWebRTC JavaDoc here.][JavaDoc]__
 
 ## Usage instructions
 
-You have two options, using the hosted files from Pristine, or compiling your own binaries. I strongly recommend you take the first path since it is much quicker and cleaner.
+You have two options, the first involves compiling your own binaries, and the second uses the hosted library from Pristine. I strongly recommend you take the second path since it is much quicker and cleaner.
 
 ## Compiling your own WebRTC binaries
 
@@ -23,7 +25,7 @@ In your application's `build.gradle`, you will first need to include a few depen
 dependencies {
     ...
     compile 'io.pristine:libjingle:9127@aar'
-    compile 'me.kevingleason:pnwebrtc:1.0.3@aar'
+    compile 'me.kevingleason:pnwebrtc:1.0.5@aar'
     compile 'com.pubnub:pubnub-android:3.7.4'    //optional
 }
 ```
@@ -268,12 +270,32 @@ protected void onDestroy() {
     
 We stop our local video source so that it will not continue streaming after we have left the video activity. We then call `PnRTCClient#onDestroy()` which cleans up the client and closes all open connections.
 
+#### Static Methods, Hangup and User Message
+
+If you need to communicate with `PnRTCClient` instances in situations where no client exists in your activity, perhaps an accept/reject call activity, there are static methods that handle this for you with any `Pubnub` instance. If you need to generate a hangup message to reject a call, you can do that as follows with a simple `Pubnub` instance.
+
+```java
+JSONObject hangupMsg = PnPeerConnectionClient.generateHangupPacket("myUsername");
+this.mPubNub.publish("userCalling",hangupMsg, new Callback() {
+    @Override
+    public void successCallback(String channel, Object message) {
+        Intent intent = new Intent(IncomingCallActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
+});
+```
+
+Simply pass __your__ username to `PnPeerConnectionClient.generateHangupPacket(String user)` and publish the returned `JSONObject` to the user who is calling.
+
+The same goes for User Messages. With any `Pubnub` object, you can send a message through the UserMessage protocol using `PnPeerConnectionClient.generateUserMessage(String user, JSONObject message)`. Again, pass __your__ username and a JSON message. This will return a `JSONObject` of the proper format that you can publish to any user the same way as a hangup.
+
 ## Want some more?
 
 - See Android RTC app, [AndroidRTC](https://github.com/GleasonK/AndroidRTC), for a concise demo of how to use `PnRTCClient` to quickly create a native Android WebRTC application.
 - The PubNub Android WebRTC Signaling API is fully compatible with the [PubNub JavaScript WebRTC SDK](https://github.com/stephenlb/webrtc-sdk). This means that browser to mobile communication is simple!
 - JS Blog: [Building a WebRTC Video and Voice Chat Application](http://www.pubnub.com/blog/building-a-webrtc-video-and-voice-chat-application/)
 
+[JavaDoc]:http://kevingleason.me/pubnub-android-webrtc/
 [NativeAndroid]:http://www.webrtc.org/native-code/android
 [PeerConnection]:http://w3c.github.io/webrtc-pc/#rtcpeerconnection-interface
 [MediaStream]:http://w3c.github.io/webrtc-pc/#dfn-mediastream
