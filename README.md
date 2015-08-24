@@ -1,9 +1,12 @@
 # PubNub Android WebRTC Signaling API
 
 [![Android
-Arsenal](https://img.shields.io/badge/Android%20Arsenal-pubnub--android--webrtc-green.svg?style=flat)](https://android-arsenal.com/details/1/2245)
+Arsenal](https://img.shields.io/badge/Android%20Arsenal-android--webrtc--api-green.svg?style=flat)](https://android-arsenal.com/details/1/2245)
 
-![cover_img](http://kevingleason.me/pubnub-android-webrtc/assets/PnWebRTC.png)
+![cover_img](http://kevingleason.me/android-webrtc-api/assets/PnWebRTC.png)
+
+![Android
+Arsenal](https://img.shields.io/badge/Current%20Version-1.0.6-green.svg?style=flat)
 
 PnWebRTC is an Android module that makes WebRTC signaling easy!
 
@@ -300,7 +303,7 @@ The same goes for User Messages. With any `Pubnub` object, you can send a messag
 - The PubNub Android WebRTC Signaling API is fully compatible with the [PubNub JavaScript WebRTC SDK](https://github.com/stephenlb/webrtc-sdk). This means that browser to mobile communication is simple!
 - JS Blog: [Building a WebRTC Video and Voice Chat Application](http://www.pubnub.com/blog/building-a-webrtc-video-and-voice-chat-application/)
 
-[JavaDoc]:http://kevingleason.me/pubnub-android-webrtc/
+[JavaDoc]:http://kevingleason.me/android-webrtc-api/
 [NativeAndroid]:http://www.webrtc.org/native-code/android
 [PeerConnection]:http://w3c.github.io/webrtc-pc/#rtcpeerconnection-interface
 [MediaStream]:http://w3c.github.io/webrtc-pc/#dfn-mediastream
