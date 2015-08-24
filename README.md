@@ -29,8 +29,8 @@ In your application's `build.gradle`, you will first need to include a few depen
 ```gradle
 dependencies {
     ...
-    compile 'io.pristine:libjingle:9127@aar'
-    compile 'me.kevingleason:pnwebrtc:1.0.5@aar'
+    compile 'io.pristine:libjingle:9694@aar'
+    compile 'me.kevingleason:pnwebrtc:1.0.6@aar'
     compile 'com.pubnub:pubnub-android:3.7.4'    //optional
 }
 ```
