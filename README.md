@@ -11,6 +11,10 @@ PnWebRTC is an Android module that makes WebRTC signaling easy!
 
 __[View the official PnWebRTC JavaDoc here.][JavaDoc]__
 
+___NOTE:___ This API uses PubNub for signaling to transfer the metadata and establish the peer-to-peer connection. Once the connection is established, the video and voice runs on public Google STUN/TURN servers.
+
+Keep in mind, PubNub can provide the signaling for WebRTC, and requires you to combine it with a hosted WebRTC solution. For more detail on what PubNub does, and what PubNub doesn’t do with WebRTC, check out this article: https://support.pubnub.com/support/solutions/articles/14000043715-does-pubnub-provide-webrtc-and-video-chat-
+
 ## Usage instructions
 
 You have two options, the first involves compiling your own binaries, and the second uses the hosted library from Pristine. I strongly recommend you take the second path since it is much quicker and cleaner.
